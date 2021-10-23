@@ -22,36 +22,46 @@ public class ForceLogin implements CommandExecutor {
 
         Player p = (Player) commandSender;
 
-        if(args.length < 1) {
+        if (p.hasPermission("antibot.ForceLogin")) {
 
-            p.sendMessage(ChatColor.RED + " ");
-            p.sendMessage(ChatColor.GRAY + " /forcelogin [nick]");
-            p.sendMessage(ChatColor.RED + " ");
+            if(args.length < 1) {
 
-        } else {
-
-            Player t = Bukkit.getPlayerExact(args[0]);
-
-            if (t == null) {
-
-                p.sendMessage(" ");
-                p.sendMessage(ChatColor.RED + "Player não encontrado!");
-                p.sendMessage(" ");
-
-                return true;
+                p.sendMessage(ChatColor.RED + " ");
+                p.sendMessage(ChatColor.GRAY + " /forcelogin [nick]");
+                p.sendMessage(ChatColor.RED + " ");
 
             } else {
 
-                Main.inAntiBot.remove(t);
-                Main.afterAntiBot.put(t, t.getName());
-                p.sendMessage(ChatColor.RED + "Você tirou " + ChatColor.GREEN + t.getName() + ChatColor.RED + " do AntiBot!");
-                t.sendMessage(ChatColor.RED + "Você foi tirado do AntiBot por " + ChatColor.GREEN + p.getName() + ChatColor.RED + "!");
+                Player t = Bukkit.getPlayerExact(args[0]);
+
+                if (t == null) {
+
+                    p.sendMessage(" ");
+                    p.sendMessage(ChatColor.RED + "Player não encontrado!");
+                    p.sendMessage(" ");
+
+                    return true;
+
+                } else {
+
+                    Main.inAntiBot.remove(t);
+                    Main.afterAntiBot.put(t, t.getName());
+                    p.sendMessage(ChatColor.RED + "Você tirou " + ChatColor.GREEN + t.getName() + ChatColor.RED + " do AntiBot!");
+                    t.sendMessage(ChatColor.RED + "Você foi tirado do AntiBot por " + ChatColor.GREEN + p.getName() + ChatColor.RED + "!");
+
+                }
 
             }
 
-        }
+            return true;
 
-        return true;
+        } else {
+
+            p.sendMessage(ChatColor.RED + "Você não tem permissão!");
+
+            return true;
+
+        }
 
     }
 

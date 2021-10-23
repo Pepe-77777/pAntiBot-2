@@ -26,7 +26,7 @@ public class Profile implements CommandExecutor {
 
         Player p = (Player) commandSender;
 
-        if(p.hasPermission("antibot")) {
+        if(p.hasPermission("antibot.profile")) {
 
             if(args.length < 1) {
 
@@ -79,9 +79,13 @@ public class Profile implements CommandExecutor {
 
             }
 
-        }
+        } else {
 
-        return true;
+            p.sendMessage(ChatColor.RED + "Você não tem perissão!");
+
+            return true;
+
+        }
 
     }
 
