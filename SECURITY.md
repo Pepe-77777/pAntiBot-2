@@ -9,4 +9,4 @@
 
 ## Reporting a Vulnerability
 
-Para criar um reporte de segurança, Você vai precisar entrar no Discord e mandar em "Seguranças" [Clique Aqui para entrar!](https://discord.gg/4qhQHrBm5g)
+Para criar um reporte de segurança, Você vai precisar entrar no Discord e mandar em "Segurança" [Clique Aqui para entrar!](https://discord.gg/4qhQHrBm5g)
