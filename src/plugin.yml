@@ -1,0 +1,12 @@
+name: pAntiBot 2
+main: br.com.pepe.antibot.Main
+version: 1.0.0
+commands:
+  pAntiBot:
+    aliases: [antibot]
+  ForceLogin:
+    aliases: [forcarlogin]
+  Profile:
+    aliases: [check, userprofile]
+  Fly:
+    aliases: [voar]
