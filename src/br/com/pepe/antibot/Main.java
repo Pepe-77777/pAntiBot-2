@@ -16,7 +16,8 @@ import java.util.Map;
 public class Main extends JavaPlugin {
 
     public static Main plugin = null;
-    public static Map<Player, String> fly = new HashMap<>();
+    public static Map<Player, Boolean> kick = new HashMap<>();
+    public static Map<Player, Integer> attempts = new HashMap<>();
     public static Map<Player, String> afterAntiBot = new HashMap<>();
     public static Map<Player, String> inAntiBot = new HashMap<>();
     public static Map<Player, String> kickedAntiBot = new HashMap<>();

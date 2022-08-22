@@ -9,6 +9,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Random;
 
@@ -38,6 +39,24 @@ public class Events implements Listener {
         Player p = e.getPlayer();
 
         Main.inAntiBot.put(p, p.getName());
+        Main.attempts.put(p, 0);
+        Main.kick.put(p, false);
+
+        p.sendMessage(ChatColor.RED + "Você tem " + ChatColor.GREEN + "3" + ChatColor.RED + " tentativas.");
+
+        new BukkitRunnable(){
+            @Override
+            public void run(){
+
+                if (Main.attempts.get(p) >= 3) {
+
+                    p.kickPlayer(ChatColor.RED + "Você tentou muitas vezes.");
+                    this.cancel();
+
+                }
+
+            }
+        }.runTaskTimer(Main.plugin, 0L, 1L);
 
         newVerification();
 
@@ -64,6 +83,8 @@ public class Events implements Listener {
                 e.setCancelled(true);
                 Main.kickedAntiBot.put(p, p.getName());
                 p.sendMessage(ChatColor.RED + "Código errado!");
+                Main.attempts.put(p, Main.attempts.get(p)+1);
+                p.sendMessage(ChatColor.RED + "Você perdeu " + ChatColor.GREEN + "1" + ChatColor.RED + " tentativa.");
 
             }
 
@@ -93,6 +114,9 @@ public class Events implements Listener {
         if (Main.inAntiBot.containsKey(p)) {
 
             e.setCancelled(true);
+            p.sendMessage(ChatColor.RED + "Código errado!");
+            Main.attempts.put(p, Main.attempts.get(p)+1);
+            p.sendMessage(ChatColor.RED + "Você perdeu " + ChatColor.GREEN + "1" + ChatColor.RED + " tentativa.");
 
         }
 
